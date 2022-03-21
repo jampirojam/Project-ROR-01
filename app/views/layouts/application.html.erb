@@ -10,6 +10,24 @@
   </head>
 
   <body>
+    <header>
+      <div class="header-logo">
+        <!-- Rewrite the following link using the link_to method -->
+        <!--<a href="/">TweetApp</a>-->
+        <%= link_to("TweetApp", "/about") %>
+      </div>
+      <ul class="header-menus">
+        <li>
+          <!-- Rewrite the following link using the link_to method -->
+          <!--<a href="/about">About</a>-->
+          <%= link_to("About", "/about") %>
+        </li>
+        <li>
+          <!-- Add a link to /posts/index using the link_to method -->
+          <%= link_to("Post", "/posts/index") %>
+        </li>
+      </ul>
+    </header>
     <%= yield %>
   </body>
 </html>
