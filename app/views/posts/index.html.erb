@@ -1,0 +1,38 @@
+<header>
+  <div class="header-logo">
+    <a href="/">TweetApp</a>
+  </div>
+  <ul class="header-menus">
+    <li>
+      <a href="/about">About</a>
+    </li>
+  </ul>
+</header>
+
+<!-- Remove the code below -->
+<!-- < % post1 = "Learning Rails with Progate!" %> -->
+<!-- < % post2 = "Trying to display the posts!" %> -->
+<!-- Remove the code above -->
+
+<!-- Define the posts array inside < % %> -->
+<!-- Remove the code below -->
+<!-- < %
+  posts = [
+    "Learning Rails with Progate!",
+    "Trying to display the posts!"
+  ]
+%> -->
+<!-- Remove the code above -->
+
+<div class="main posts-index">
+  <div class="container">
+    <!-- Add an each method inside < % %> -->
+    <% posts.each do |post| %>
+      <div class="posts-index-item">
+        <!-- Display the post using < %= %> -->
+        <%= post %>
+      </div>
+    <!-- Add the end for the each method inside < % %> -->
+    <% end %>
+  </div>
+</div>

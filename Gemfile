@@ -5,8 +5,8 @@ ruby "3.1.1"
 
 gem 'tzinfo-data'
 
-gem 'sass-rails', '>= 6'
-gem 'sassc', '~> 2.1.0'
+# gem 'sass-rails', '>= 6'
+# gem 'sassc', '~> 2.1.0'
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
 gem "rails", "~> 7.0.2", ">= 7.0.2.3"
