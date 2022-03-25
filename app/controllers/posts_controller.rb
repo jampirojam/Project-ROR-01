@@ -6,7 +6,9 @@ class PostsController < ApplicationController
     #    "Trying to display the posts!",
     #  ]
     
-    @posts = Post.all
+    # Use the order method to sort the posts using created_at
+    # @posts = Post.all
+    @posts = Post.all.order(id: :desc)
   end
 
   def show
@@ -20,5 +22,10 @@ class PostsController < ApplicationController
   end
 
   def create
+  # Get the data received from the form, then save it
+  @post = Post.new(content: params[:content])
+  @post.save
+  # Use the redirect_to method to redirect to the "Posts" page
+  redirect_to("/posts/index")
   end
 end
