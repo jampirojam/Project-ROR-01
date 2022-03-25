@@ -5,6 +5,15 @@
         <!-- Replace the following text and rewrite it using <%= %> -->
         <%= "This page shows the details of a post with id: #{@id}" %>
       </p>
+      <p>
+        <!-- Display the @post's content -->
+        <%= @post.content %>
+      </p>
+      <!-- Paste the HTML here -->
+      <div class="post-time">
+        <!-- Display the @post's created_at -->
+        <%= @post.created_at %>
+      </div>
     </div>
   </div>
 </div>

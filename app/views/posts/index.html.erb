@@ -31,7 +31,8 @@
       <div class="posts-index-item">
         <!-- Display the post using < %= %> -->
         <!-- <%= post %> -->
-        <%= post.content %>
+        <!-- <%= post.content %> -->
+        <%= link_to(post.content, "/posts/#{post.id}") %>
       </div>
     <!-- Add the end for the each method inside < % %> -->
     <% end %>
