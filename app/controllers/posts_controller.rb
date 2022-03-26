@@ -1,11 +1,5 @@
 class PostsController < ApplicationController
   def index
-    # Paste the posts array defined in the view, then rename it to @posts
-    #  @posts = [
-    #    "Learning Rails with Progate!",
-    #    "Trying to display the posts!",
-    #  ]
-    
     # Use the order method to sort the posts using created_at
     # @posts = Post.all
     @posts = Post.all.order(id: :desc)
@@ -22,10 +16,30 @@ class PostsController < ApplicationController
   end
 
   def create
-  # Get the data received from the form, then save it
-  @post = Post.new(content: params[:content])
-  @post.save
-  # Use the redirect_to method to redirect to the "Posts" page
-  redirect_to("/posts/index")
+    # Get the data received from the form, then save it
+    @post = Post.new(content: params[:content])
+    @post.save
+    # Use the redirect_to method to redirect to the "Posts" page
+    redirect_to("/posts/index")
+  end
+
+  def edit
+    @post = Post.find_by(id: params[:id])
+  end
+
+  def update
+    @post = Post.find_by(id: params[:id])
+    @post.content = params[:content]
+    if @post.save
+      redirect_to("/posts/index")
+     else
+      redirect_to("/posts/#{@post.id}/edit")
+    end
+  end
+
+  def destroy
+    @post = Post.find_by(id: params[:id])
+    @post.destroy
+    redirect_to("/posts/index")
   end
 end
