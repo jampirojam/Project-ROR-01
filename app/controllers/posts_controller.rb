@@ -13,14 +13,19 @@ class PostsController < ApplicationController
 
   # Add the "new" action
   def new
+    # Declare @post variable, and assign it the new instance of Post created using the "new" method
+    @post = Post.new
   end
 
   def create
-    # Get the data received from the form, then save it
     @post = Post.new(content: params[:content])
-    @post.save
-    # Use the redirect_to method to redirect to the "Posts" page
-    redirect_to("/posts/index")
+    # Redirect to the "Posts" page if the @post is valid, and render the "New post" page if it's invalid
+    if @post.save
+      flash[:notice] = "Post successfully created"
+      redirect_to("/posts/index")
+    else
+      render("posts/new")
+    end
   end
 
   def edit
@@ -31,15 +36,18 @@ class PostsController < ApplicationController
     @post = Post.find_by(id: params[:id])
     @post.content = params[:content]
     if @post.save
+      flash[:notice] = "Post successfully edited"
       redirect_to("/posts/index")
      else
-      redirect_to("/posts/#{@post.id}/edit")
+      # redirect_to("/posts/#{@post.id}/edit")
+      render("posts/edit")
     end
   end
 
   def destroy
     @post = Post.find_by(id: params[:id])
     @post.destroy
+    flash[:notice] = "Post successfully deleted"
     redirect_to("/posts/index")
   end
 end
