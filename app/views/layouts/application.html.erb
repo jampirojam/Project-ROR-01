@@ -1,42 +1,43 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Project</title>
-    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>TweetApp</title>
     <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
     <header>
       <div class="header-logo">
-        <!-- Rewrite the following link using the link_to method -->
-        <!--<a href="/">TweetApp</a>-->
-        <%= link_to("TweetApp", "/about") %>
+        <%= link_to("TweetApp", "/") %>
       </div>
       <ul class="header-menus">
         <li>
-          <!-- Rewrite the following link using the link_to method -->
-          <!--<a href="/about">About</a>-->
           <%= link_to("About", "/about") %>
         </li>
         <li>
-          <!-- Add a link to /posts/index using the link_to method -->
-          <%= link_to("Post", "/posts/index") %>
+          <%= link_to("Posts", "/posts/index") %>
         </li>
         <li>
-          <!-- Add a link to /posts/new using the link_to method -->
-          <%= link_to("New post", "/posts/new") %>          
+          <%= link_to("New post", "/posts/new") %>
+        </li>
+        <li>
+          <%= link_to("Users", "/users/index") %>
+        </li>
+        <!-- Add a link to the "Sign up" page -->
+        <li>
+          <%= link_to("Sign up", "/signup") %>
         </li>
       </ul>
     </header>
+
     <% if flash[:notice] %>
       <div class="flash">
         <%= flash[:notice] %>
       </div>
     <% end %>
+    
     <%= yield %>
   </body>
 </html>
