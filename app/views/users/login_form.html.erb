@@ -1,0 +1,20 @@
+<div class="main users-new">
+  <div class="container">
+    <div class="form-heading">Log in</div>
+    <div class="form users-form">
+      <div class="form-body">
+        <!-- Add a form_tag method to send the data to the "login" action -->
+        <%= form_tag("/login") do %>
+          <p>Email</p>
+          <!-- Add the "name" attribute -->
+          <input name="email">
+          <p>Password</p>
+          <!-- Add the "name" attribute -->
+          <input type="password" name="password">
+          <input type="submit" value="Log in">
+        <!-- Add an end statement -->
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
