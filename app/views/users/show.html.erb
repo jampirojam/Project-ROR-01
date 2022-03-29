@@ -4,7 +4,10 @@
       <img src="<%= "/user_images/#{@user.image_name}" %>">
       <h2><%= @user.name %></h2>
       <p><%= @user.email %></p>
-      <%= link_to("Edit", "/users/#{@user.id}/edit") %>
+      <!-- Display the following link only if @user's id is the same as the logged in user's id -->
+      <% if @user.id == @current_user.id %>
+        <%= link_to("Edit", "/users/#{@user.id}/edit") %>
+      <% end %>
     </div>
   </div>
 </div>
