@@ -76,11 +76,20 @@ class UsersController < ApplicationController
     flash[:notice] = "You have logged out successfully"
     redirect_to("/login")
   end
-
+  
+  def likes
+    # Define the @user variable
+    @user = User.find_by(id: params[:id])
+    
+    # Define the @likes variable
+    @likes = Like.where(user_id: @user.id)
+  end
+  
   def ensure_correct_user
     if @current_user.id != params[:id].to_i
       flash[:notice] = "Unauthorized access"
       redirect_to("/posts/index")
     end
   end
+  
 end

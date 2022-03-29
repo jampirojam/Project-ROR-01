@@ -5,12 +5,14 @@
     <%= csrf_meta_tags %>
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    
+    <!-- Add a <link> tag to load Font Awesome -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
   </head>
 
   <body>
     <header>
       <div class="header-logo">
-        <!-- Remove the line below, then paste the new code -->
         <% if @current_user %>
           <%= link_to("TweetApp", "/posts/index") %>
         <% else %>
@@ -32,7 +34,7 @@
             <%= link_to("Users", "/users/index") %>
           </li>
           <li>
-            <%= button_to("Log out", "/logout", {method: :post}) %>
+            <%= link_to("Log out", "/logout", {method: :post}) %>
           </li>
         <% else %>
           <li>

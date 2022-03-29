@@ -11,13 +11,17 @@
       <div class="post-time">
         <%= @post.created_at %>
       </div>
-      
-      <!-- Add an if-else statement to display different messages -->
       <% if Like.find_by(user_id: @current_user.id, post_id: @post.id) %>
-        Liked!
+        <%= link_to("/likes/#{@post.id}/destroy", {method: "post"}) do %>
+          <span class="fa fa-heart like-btn-unlike"></span>
+        <% end %>
       <% else %>
-        Not Liked!
+        <%= link_to("/likes/#{@post.id}/create", {method: "post"}) do %>
+          <span class="fa fa-heart like-btn"></span>
+        <% end %>
       <% end %>
+      <!-- Display the @likes_count variable -->
+      <%= @likes_count %>
       
       <% if @post.user_id == @current_user.id %>
         <div class="post-menus">
