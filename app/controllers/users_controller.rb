@@ -1,4 +1,7 @@
 class UsersController < ApplicationController
+  before_action :authenticate_user, {only: [:index, :show, :edit, :update]}
+  # Set the forbid_login_user method as a before_action
+  before_action :forbid_login_user, {only: [:new, :create, :login_form, :login]}
   
   def index
     @users = User.all
@@ -17,11 +20,9 @@ class UsersController < ApplicationController
       name: params[:name],
       email: params[:email],
       image_name: "default_user.jpg",
-      # Add an argument to set the "password"
       password: params[:password]
     )
     if @user.save
-      # Store the id of the user in session[:user_id]
       session[:user_id] = @user.id
       flash[:notice] = "You have signed up successfully"
       redirect_to("/users/#{@user.id}")

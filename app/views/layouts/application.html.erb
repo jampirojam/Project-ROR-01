@@ -10,16 +10,16 @@
   <body>
     <header>
       <div class="header-logo">
-        <%= link_to("TweetApp", "/") %>
+        <!-- Remove the line below, then paste the new code -->
+        <% if @current_user %>
+          <%= link_to("TweetApp", "/posts/index") %>
+        <% else %>
+          <%= link_to("TweetApp", "/") %>
+        <% end %>
       </div>
       <ul class="header-menus">
-        <!-- Remove the line below -->
-        
-        
-        <!-- Rewrite using @current_user -->
         <% if @current_user %>
           <li>
-            <!-- Rewrite using @current_user -->
             <%= link_to(@current_user.name, "/users/#{@current_user.id}") %>
           </li>
           <li>
@@ -32,7 +32,7 @@
             <%= link_to("Users", "/users/index") %>
           </li>
           <li>
-            <%= button_to("Log out", "/logout", {method: :post}) %>
+            <%= link_to("Log out", "/logout", {method: :post}) %>
           </li>
         <% else %>
           <li>
