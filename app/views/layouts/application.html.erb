@@ -13,25 +13,38 @@
         <%= link_to("TweetApp", "/") %>
       </div>
       <ul class="header-menus">
-        <li>
-          <%= link_to("About", "/about") %>
-        </li>
-        <li>
-          <%= link_to("Posts", "/posts/index") %>
-        </li>
-        <li>
-          <%= link_to("New post", "/posts/new") %>
-        </li>
-        <li>
-          <%= link_to("Users", "/users/index") %>
-        </li>
-        <li>
-          <%= link_to("Sign up", "/signup") %>
-        </li>
-        <li>
-          <!-- Add a link to the "Log in" page -->
-          <%= link_to("Log in", "/login") %>
-        </li>
+        <!-- Remove the line below -->
+        
+        
+        <!-- Rewrite using @current_user -->
+        <% if @current_user %>
+          <li>
+            <!-- Rewrite using @current_user -->
+            <%= link_to(@current_user.name, "/users/#{@current_user.id}") %>
+          </li>
+          <li>
+            <%= link_to("Posts", "/posts/index") %>
+          </li>
+          <li>
+            <%= link_to("New post", "/posts/new") %>
+          </li>
+          <li>
+            <%= link_to("Users", "/users/index") %>
+          </li>
+          <li>
+            <%= button_to("Log out", "/logout", {method: :post}) %>
+          </li>
+        <% else %>
+          <li>
+            <%= link_to("About", "/about") %>
+          </li>
+          <li>
+            <%= link_to("Sign up", "/signup") %>
+          </li>
+          <li>
+            <%= link_to("Log in", "/login") %>
+          </li>
+        <% end %>
       </ul>
     </header>
 

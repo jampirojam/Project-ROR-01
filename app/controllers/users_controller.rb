@@ -16,9 +16,13 @@ class UsersController < ApplicationController
     @user = User.new(
       name: params[:name],
       email: params[:email],
-      image_name: "default_user.jpg"
+      image_name: "default_user.jpg",
+      # Add an argument to set the "password"
+      password: params[:password]
     )
     if @user.save
+      # Store the id of the user in session[:user_id]
+      session[:user_id] = @user.id
       flash[:notice] = "You have signed up successfully"
       redirect_to("/users/#{@user.id}")
     else
@@ -52,8 +56,24 @@ class UsersController < ApplicationController
   def login_form
   end
   
-  # Add a new action named "login"
   def login
+    @user = User.find_by(email: params[:email], password: params[:password])
+    if @user
+      session[:user_id] = @user.id
+      flash[:notice] = "You have logged in successfully"
+      redirect_to("/posts/index")
+    else
+      @error_message = "Invalid email/password combination"
+      @email = params[:email]
+      @password = params[:password]
+      render("users/login_form")
+    end
+  end
+  
+  def logout
+    session[:user_id] = nil
+    flash[:notice] = "You have logged out successfully"
+    redirect_to("/login")
   end
   
 end

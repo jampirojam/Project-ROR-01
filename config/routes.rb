@@ -1,7 +1,8 @@
 Rails.application.routes.draw do
   get "login" => "users#login_form"
-  # Add a new route for the "login" action
   post "login" => "users#login"
+  # Add a new route for the "logout" action
+  post "logout" => "users#logout"
 
   post "users/:id/update" => "users#update"
   get "users/:id/edit" => "users#edit"
