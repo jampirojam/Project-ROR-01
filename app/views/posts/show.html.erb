@@ -11,13 +11,19 @@
       <div class="post-time">
         <%= @post.created_at %>
       </div>
-      <!-- Add an if statement -->
+      
+      <!-- Add an if-else statement to display different messages -->
+      <% if Like.find_by(user_id: @current_user.id, post_id: @post.id) %>
+        Liked!
+      <% else %>
+        Not Liked!
+      <% end %>
+      
       <% if @post.user_id == @current_user.id %>
         <div class="post-menus">
           <%= link_to("Edit", "/posts/#{@post.id}/edit") %>
           <%= link_to("Delete", "/posts/#{@post.id}/destroy", {method: "post"}) %>
         </div>
-      <!-- Add an end statement -->
       <% end %>
     </div>
   </div>
