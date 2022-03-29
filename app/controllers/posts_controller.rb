@@ -1,5 +1,4 @@
 class PostsController < ApplicationController
-  # Set the authenticate_user method as a before_action
   before_action :authenticate_user
   
   def index
@@ -8,6 +7,8 @@ class PostsController < ApplicationController
   
   def show
     @post = Post.find_by(id: params[:id])
+    # Rewrite the following line using the "user" method
+    @user = @post.user
   end
   
   def new
@@ -15,7 +16,10 @@ class PostsController < ApplicationController
   end
   
   def create
-    @post = Post.new(content: params[:content])
+    @post = Post.new(
+      content: params[:content],
+      user_id: @current_user.id
+    )
     if @post.save
       flash[:notice] = "Post successfully created"
       redirect_to("/posts/index")

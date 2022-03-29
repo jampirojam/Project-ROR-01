@@ -1,23 +1,24 @@
 <div class="main posts-show">
   <div class="container">
     <div class="posts-show-item">
+      <div class="post-user-name">
+        <img src="<%= "/user_images/#{@user.image_name}" %>">
+        <%= link_to(@user.name, "/users/#{@user.id}") %>
+      </div>
       <p>
-        <!-- Replace the following text and rewrite it using <%= %> -->
-        <%= "This page shows the details of a post with id: #{@id}" %>
-      </p>
-      <p>
-        <!-- Display the @post's content -->
         <%= @post.content %>
       </p>
-      <!-- Paste the HTML here -->
       <div class="post-time">
-        <!-- Display the @post's created_at -->
         <%= @post.created_at %>
       </div>
-      <div class="post-menus">
-        <%= link_to("Edit", "/posts/#{@post.id}/edit", {class: 'button-crud'}) %>
-        <%= button_to("Delete", "/posts/#{@post.id}/destroy", {method: "post", class: 'button-crud'}) %>
-      </div>
+      <!-- Add an if statement -->
+      <% if @post.user_id == @current_user.id %>
+        <div class="post-menus">
+          <%= link_to("Edit", "/posts/#{@post.id}/edit") %>
+          <%= link_to("Delete", "/posts/#{@post.id}/destroy", {method: "post"}) %>
+        </div>
+      <!-- Add an end statement -->
+      <% end %>
     </div>
   </div>
 </div>
